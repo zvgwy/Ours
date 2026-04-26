@@ -1920,3 +1920,115 @@ select {
   display: flex;
   align-items: center;
 }
+
+/* Stats bucket list buttons */
+.bucket-list li > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bucket-list .small-btn,
+.bucket-list .delete-btn {
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+  line-height: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: none !important;
+}
+
+.bucket-list .small-btn {
+  background: #ff5f98;
+  color: white;
+}
+
+.bucket-list .delete-btn {
+  background: #ffe4ef;
+  color: #ff5f98;
+}
+
+.bucket-list .delete-btn:hover {
+  background: #ffd3e4;
+}
+
+.plane-card-footer {
+  margin-top: 8px;
+  margin-bottom: 6px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.plane-meta {
+  font-size: 0.7rem;
+  color: #a88a97;
+  opacity: 0.85;
+}
+
+.plane-log-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.plane-log-stats div {
+  background: #fff1f6;
+  border-radius: 18px;
+  padding: 16px;
+  text-align: center;
+}
+
+.plane-log-stats span {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ff5f98;
+}
+
+.plane-log-stats p {
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+}
+
+.plane-note {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #7a5a67;
+}
+
+.note-label {
+  font-weight: 600;
+  opacity: 0.7;
+  margin-right: 6px;
+}
+
+.note-text {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo img {
+  transition: transform 0.2s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.08);
+}

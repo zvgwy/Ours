@@ -263,9 +263,20 @@ async function loadPlanes() {
   container.innerHTML = "";
 
   if (!data || data.length === 0) {
+    document.getElementById("totalPlanesSeen").textContent = 0;
+    document.getElementById("uniqueAircraftSeen").textContent = 0;
+
     container.innerHTML = `<p>No planes yet.</p>`;
     return;
   }
+
+  document.getElementById("totalPlanesSeen").textContent = data.length;
+
+  const uniqueAircrafts = new Set(
+    data.map((plane) => plane.aircraft_icao || plane.model || "Unknown")
+  );
+
+  document.getElementById("uniqueAircraftSeen").textContent = uniqueAircrafts.size;
 
   data.forEach((plane) => {
     const card = document.createElement("div");
@@ -293,7 +304,18 @@ async function loadPlanes() {
       <p><strong>Flight:</strong> ${plane.flight_iata || ""}</p>
       <p><strong>Route:</strong> ${plane.dep_iata || "?"} → ${plane.arr_iata || "?"}</p>
       <p><strong>Seen at:</strong> ${plane.location || ""}</p>
-      <p>${plane.notes || ""}</p>
+      ${plane.notes ? `
+        <p class="plane-note">
+          <span class="note-emoji">📝</span>
+          <span class="note-text">${plane.notes}</span>
+        </p>
+      ` : ""}
+
+      <div class="plane-card-footer">
+        <span class="plane-meta">
+          Added ${formatRelativeTime(plane.created_at)}
+        </span>
+      </div>
     `;
 
     container.appendChild(card);
@@ -373,4 +395,28 @@ function renderSearchResults() {
 
     container.appendChild(seeMoreBtn);
   }
+}
+
+function formatRelativeTime(dateValue) {
+  if (!dateValue) return "just now";
+
+  const date = new Date(dateValue + "Z");
+  const now = new Date();
+
+  const diffMs = now.getTime() - date.getTime();
+  const seconds = Math.floor(diffMs / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (seconds < 60) return "just now";
+  if (minutes < 60) return `${minutes} min${minutes > 1 ? "s" : ""} ago`;
+  if (hours < 24) return `${hours} hr${hours > 1 ? "s" : ""} ago`;
+  if (days < 7) return `${days} day${days > 1 ? "s" : ""} ago`;
+
+  return date.toLocaleDateString("en-PH", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 }

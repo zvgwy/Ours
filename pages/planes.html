@@ -11,9 +11,9 @@
 
 <body>
   <header class="site-header">
-    <div class="logo">
+    <a href="../index.html" class="logo">
       <img src="../img/icon.png" alt="Logo" />
-    </div>
+    </a>
     <nav>
       <a href="../index.html">Home</a>
       <a href="stats.html">Stats</a>
@@ -28,7 +28,21 @@
       <p class="eyebrow">for mariah</p>
       <h1>Mariah's Plane Log</h1>
       <p>
-        Search the plane you saw, select it, add where you saw it, then save it to your log.
+        Hi baby! I know how much you love planes, 
+        so I thought it would be fun to have a little log 
+        where you can keep track of all the planes you've seen. 
+        You can search for any flight or aircraft and 
+        add it to your log with a note about where you saw it or 
+        any special memories associated with it. I hope this makes your 
+        plane-spotting adventures even more enjoyable! I love you to the moon and back! ✈️❤️
+
+        <br/><br/>
+
+        <i>Note: The database I used is for real-time flights only, so unfortunately, 
+        you add sightings of planes
+        that are still in the air but not those that have already landed 🙁. 
+        However, I will be adding a feature in the future to allow you to add 
+        past sightings as well, so stay tuned! hehe </i>
       </p>
     </section>
 
@@ -65,6 +79,19 @@
 
       <div class="planes-card wide">
         <h2>Mariah's Log</h2>
+
+        <div class="plane-log-stats">
+          <div>
+            <span id="totalPlanesSeen">0</span>
+            <p>Total Sightings</p>
+          </div>
+
+          <div>
+            <span id="uniqueAircraftSeen">0</span>
+            <p>Models Seen</p>
+          </div>
+        </div>
+
         <div id="planeLog" class="plane-log"></div>
       </div>
     </section>

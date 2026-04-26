@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mariah's Planes</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <link rel="icon" href="../img/icon.png" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="../img/icon.png" alt="Logo" />
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="stats.html">Stats</a>
+      <a href="funds.html">Funds</a>
+      <a href="planes.html" class="active">Mariah's Planes</a>
+      <a href="levelup.html">Rank</a>
+    </nav>
+  </header>
+
+  <main class="planes-page fade-in">
+    <section class="planes-hero">
+      <p class="eyebrow">for mariah</p>
+      <h1>Mariah's Plane Log</h1>
+      <p>
+        Search the plane you saw, select it, add where you saw it, then save it to your log.
+      </p>
+    </section>
+
+    <section class="planes-layout">
+      <div class="planes-card">
+        <h2>Search Plane</h2>
+
+        <div class="plane-search-row">
+          <input
+            id="searchValue"
+            type="text"
+            placeholder="Search flight, aircraft, airline, airport, or registration..."
+          />
+
+          <button onclick="searchPlanes()">Search</button>
+        </div>
+
+        <div id="searchResults" class="search-results"></div>
+      </div>
+
+      <div class="planes-card">
+        <h2>Add Sighting</h2>
+
+        <div class="selected-plane-box">
+          <p class="small-label">Selected Plane</p>
+          <h3 id="selectedPlane">No plane selected</h3>
+        </div>
+
+        <input id="locationInput" type="text" placeholder="Where did you see it?" />
+        <textarea id="notesInput" placeholder="Notes, optional"></textarea>
+
+        <button onclick="savePlane()" class="full-btn">Add to Log ✈️</button>
+      </div>
+
+      <div class="planes-card wide">
+        <h2>Mariah's Log</h2>
+        <div id="planeLog" class="plane-log"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/planes.js"></script>
+</body>
+</html>

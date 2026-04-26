@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ours</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <link rel="icon" href="img/icon.png" />
+</head>
+<body>
+  <div id="identityScreen" class="identity-screen">
+    <div class="identity-card">
+      <p>Who are you? 🤨</p>
+
+      <select id="personSelect">
+        <option value="">Choose your name</option>
+        <option value="Gwyneth">Gwyneth</option>
+        <option value="Mariah">Mariah</option>
+      </select>
+
+      <button id="enterBtn">Enter</button>
+    </div>
+  </div>
+
+  <div id="siteContent" class="hidden">
+    <header class="site-header">
+      <div class="logo">
+        <img src="img/icon.png" alt="Logo" />
+      </div>
+
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="pages/stats.html">Stats</a>
+        <a href="pages/funds.html">Funds</a>
+        <a href="pages/planes.html">Mariah's Planes</a>
+        <a href="pages/levelup.html">Rank</a>
+      </nav>
+    </header>
+
+    <main class="home-page fade-in">
+      <section class="hero-card">
+        <p class="eyebrow">our little corner of the internet</p>
+        <h1 id="welcomeTitle">Hi love, welcome home.</h1>
+
+        <p class="intro">
+          This is a small space made for us. A place to keep track of our memories,
+          our little goals, our future plans, and all the tiny moments that make us,
+          us.
+        </p>
+
+        <div class="relationship-card">
+          <p class="counter-label">Together For</p>
+
+          <div class="time-grid">
+            <div><span id="years">0</span><p>Years</p></div>
+            <div><span id="months">0</span><p>Months</p></div>
+            <div><span id="days">0</span><p>Days</p></div>
+            <div><span id="hours">0</span><p>Hours</p></div>
+            <div><span id="minutes">0</span><p>Minutes</p></div>
+            <div><span id="seconds">0</span><p>Seconds</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="miss-widget">
+        <p class="widget-label">Today's missing counter</p>
+        <h2 id="missTitle">You were missed today</h2>
+
+        <div class="miss-count">
+          <span id="missCount">0</span>
+          <p>times today</p>
+        </div>
+
+        <button id="missBtn">Send “I miss you” 💌</button>
+        <div id="sentPopup" class="sent-popup">Sent 💌</div>
+
+        <p class="tiny-note" id="senderNote"></p>
+
+        <button id="switchUserBtn" class="secondary-btn">Switch user</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+</html>

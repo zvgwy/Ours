@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Funds</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <link rel="icon" href="../img/icon.png" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="../img/icon.png" alt="Logo" />
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="stats.html">Stats</a>
+      <a href="funds.html" class="active">Funds</a>
+      <a href="planes.html">Mariah's Planes</a>
+      <a href="levelup.html">Rank</a>
+    </nav>
+  </header>
+
+  <main class="funds-page fade-in">
+    <section class="funds-hero">
+      <p class="eyebrow">for our future</p>
+      <h1>Our Funds</h1>
+      <p>
+        A tiny dashboard for the things we are saving for, the things we want,
+        and the future we are slowly building together.
+      </p>
+    </section>
+
+    <section class="funds-grid">
+      <div class="funds-card savings-card">
+        <div class="funds-title-row">
+        <h2 id="goalTitle">₱80,000 Goal</h2>
+
+        <div>
+            <button class="small-btn" onclick="editGoal()">Edit Goal</button>
+            <button class="small-btn delete-btn" onclick="resetFunds()">Reset</button>
+        </div>
+        </div>
+
+        <div class="money-total">
+          <span id="savedAmount">₱0</span>
+          <p>saved so far</p>
+        </div>
+
+        <div class="progress-shell">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <p class="progress-text">
+          <span id="progressPercent">0%</span> completed
+        </p>
+
+        <form id="moneyForm" class="add-form money-form">
+          <input id="moneyInput" type="number" min="1" placeholder="Amount" />
+          <input id="moneyNote" type="text" placeholder="Note, optional" />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+
+      <div class="funds-card">
+        <h2>Recent Additions</h2>
+        <ul id="moneyList" class="money-list"></ul>
+      </div>
+
+      <div class="funds-card wide">
+        <h2>Things We Want to Spend On</h2>
+        <p>Little and big things we’re saving for someday.</p>
+
+        <form id="wishlistForm" class="add-form">
+          <input id="wishlistItem" type="text" placeholder="Item name..." />
+          <input id="wishlistPrice" type="number" min="0" placeholder="Price" />
+          <button type="submit">Add</button>
+        </form>
+
+        <ul id="wishlist" class="bucket-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/funds.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stats</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <link rel="icon" href="../img/icon.png" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="../img/icon.png" alt="Logo" />
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="stats.html" class="active">Stats</a>
+      <a href="funds.html">Funds</a>
+      <a href="planes.html">Mariah's Planes</a>
+      <a href="levelup.html">Rank</a>
+    </nav>
+  </header>
+
+  <main class="stats-page fade-in">
+    <section class="stats-hero">
+      <p class="eyebrow">our little numbers</p>
+      <h1>Relationship Stats</h1>
+      <p>
+        A tiny dashboard for our time, our plans, and all the times we miss each other.
+      </p>
+    </section>
+
+    <section class="stats-grid top-row">
+      <!-- LEFT: Missing Stats -->
+        <div class="stats-card">
+            <h2>Missing Stats</h2>
+
+            <p class="missing-label">We missed each other</p>
+
+            <div class="mini-stats">
+                <div>
+                <span id="missToday">0</span>
+                <p>Today</p>
+                </div>
+
+                <div>
+                <span id="missMonth">0</span>
+                <p>This Month</p>
+                </div>
+
+                <div>
+                <span id="missYear">0</span>
+                <p>This Year</p>
+                </div>
+            </div>
+
+            <div class="individual-stats">
+                <div>
+                <p class="person-name">Gwyneth</p>
+                <span id="gTotal">0</span>
+                <small>all time</small>
+                </div>
+
+                <div>
+                <p class="person-name">Mariah</p>
+                <span id="mTotal">0</span>
+                <small>all time</small>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Relationship Timer -->
+      <div class="stats-card timer-card">
+        <h2>Together for</h2>
+
+        <div class="time-grid compact small-timer">
+          <div>
+            <span id="years">0</span>
+            <p>Year</p>
+          </div>
+
+          <div>
+            <span id="months">0</span>
+            <p>Months</p>
+          </div>
+
+          <div>
+            <span id="days">0</span>
+            <p>Days</p>
+          </div>
+
+          <div>
+            <span id="hours">0</span>
+            <p>Hours</p>
+          </div>
+
+          <div>
+            <span id="minutes">0</span>
+            <p>Minutes</p>
+          </div>
+
+          <div>
+            <span id="seconds">0</span>
+            <p>Seconds</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM: Bucket List -->
+    <section class="stats-card bucket-section">
+      <div class="card-header">
+        <div>
+          <h2>Our Bucket List</h2>
+          <p>Things we want to do together.</p>
+        </div>
+      </div>
+
+      <form id="bucketForm" class="add-form">
+        <input
+          id="bucketInput"
+          type="text"
+          placeholder="Add something to our bucket list..."
+        />
+        <button type="submit">Add</button>
+      </form>
+
+      <ul id="bucketList" class="bucket-list"></ul>
+    </section>
+  </main>
+
+  <script src="../js/stats.js"></script>
+</body>
+</html>

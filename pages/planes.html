@@ -9,7 +9,6 @@
   <link rel="icon" href="../img/icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
   <header class="site-header">
     <nav>
@@ -17,13 +16,13 @@
       <a href="stats.html">Stats</a>
       <a href="funds.html">Funds</a>
       <a href="planes.html" class="active">Mariah's Planes</a>
+      <a href="letters.html">Letters</a>
       <a href="levelup.html">Rank</a>
     </nav>
     <a href="../index.html" class="logo">
       <img src="../img/icon.png" alt="Logo" />
     </a>
   </header>
-
   <main class="planes-page fade-in">
     <section class="planes-hero">
       <p class="eyebrow">for mariah</p>
@@ -36,9 +35,7 @@
         add it to your log with a note about where you saw it or 
         any special memories associated with it. I hope this makes your 
         plane-spotting adventures even more enjoyable! I love you to the moon and back! ✈️❤️
-
         <br/><br/>
-
         <i>Note: The database I used is for real-time flights only, so unfortunately, 
         you can add sightings of planes
         that are still in the air but not those that have already landed 🙁. 
@@ -46,11 +43,9 @@
         past sightings as well, so stay tuned! hehe </i>
       </p>
     </section>
-
     <section class="planes-layout">
       <div class="planes-card">
         <h2>Search Plane</h2>
-
         <div class="plane-search-pill">
           <input
             id="searchValue"
@@ -60,44 +55,34 @@
           />
           <button type="button" class="search-icon-btn" onclick="searchPlanes()">🔍</button>
         </div>
-
         <div id="searchResults" class="search-results"></div>
       </div>
-
       <div class="planes-card">
         <h2>Add Sighting</h2>
-
         <div class="selected-plane-box">
           <p class="small-label">Selected Plane</p>
           <h3 id="selectedPlane">No plane selected</h3>
         </div>
-
         <input id="locationInput" type="text" placeholder="Where did you see it?" />
         <textarea id="notesInput" placeholder="Notes, optional"></textarea>
-
         <button onclick="savePlane()" class="full-btn">Add to Log ✈️</button>
       </div>
-
       <div class="planes-card wide">
         <h2>Mariah's Log</h2>
-
         <div class="plane-log-stats">
           <div>
             <span id="totalPlanesSeen">0</span>
             <p>Total Sightings</p>
           </div>
-
           <div>
             <span id="uniqueAircraftSeen">0</span>
             <p>Models Seen</p>
           </div>
         </div>
-
         <div id="planeLog" class="plane-log"></div>
       </div>
     </section>
   </main>
-
   <script src="../js/planes.js"></script>
   <script src="../js/swipe.js"></script>
 </body>

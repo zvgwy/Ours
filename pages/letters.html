@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letters | Ours</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="../js/swipe.js"></script>
+  <link rel="icon" href="../img/icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="identityScreen" class="identity-screen">
+    <div class="identity-card">
+      <p>Who are you? 🤨</p>
+      <div class="user-picker">
+        <button class="user-option" data-user="Mariah">Mariah</button>
+        <button class="user-option" data-user="Gwyneth">Gwyneth</button>
+      </div>
+    </div>
+  </div>
+  <div id="siteContent" class="hidden">
+    <header class="site-header">
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="stats.html">Stats</a>
+        <a href="funds.html">Funds</a>
+        <a href="planes.html">Mariah's Planes</a>
+        <a href="letters.html" class="active">Letters</a>
+        <a href="levelup.html">Rank</a>
+      </nav>
+      <a href="../index.html" class="logo">
+        <img src="../img/icon.png" alt="Logo" />
+      </a>
+    </header>
+    <main class="letters-page fade-in">
+      <section class="letters-hero">
+        <h1>Our Letters</h1>
+        <p>
+          I made this page for us to write letters to each other, whenever, wherever.
+          It can be a short note, or a full blown love letter, it doesn't matter to me as long
+          it's from you. Expect that I'll be sending random notes here and there so I hope you visit this site
+          whenever you could. I love you so much baby! This is all for you.
+        <br>
+        <br>
+          xoxo, G
+        </p>
+        <div class="letters-actions">
+          <button id="openWriteModalBtn">Write a letter 💌</button>
+          <button id="switchUserBtn" class="secondary-btn">Switch user</button>
+        </div>
+        <p class="tiny-note" id="currentUserNote"></p>
+      </section>
+      <section class="letters-board" id="lettersBoard">
+        <p class="empty-state">Loading letters...</p>
+      </section>
+    </main>
+  </div>
+  <div id="letterModal" class="letter-modal hidden">
+    <div class="letter-modal-backdrop"></div>
+    <div class="letter-reader">
+      <div class="big-envelope" id="bigEnvelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-paper">
+        <button id="paperCloseBtn" class="paper-close-btn">×</button>
+        <p id="letterMeta"></p>
+        <h2 id="letterTitle"></h2>
+        <div id="letterBody"></div>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="envelope-flap"></div>
+      </div>
+      <div class="letter-reader-actions">
+      </div>
+    </div>
+  </div>
+  <div id="writeModal" class="letter-modal hidden">
+    <div class="letter-modal-backdrop"></div>
+    <div class="write-card">
+      <button id="closeWriteBtn" class="letter-close-btn">×</button>
+      <p class="eyebrow">new letter</p>
+      <h2 id="writeTitle">Write a letter</h2>
+      <form id="letterForm">
+        <label>
+          Title
+          <input id="titleInput" type="text" placeholder="Short title here" required />
+        </label>
+        <label>
+          Letter
+          <textarea id="bodyInput" placeholder="Write your letter here... no maximum or minimum btw hehe" required></textarea>
+        </label>
+        <button type="submit" class="full-btn">Save letter 💌</button>
+      </form>
+    </div>
+  </div>
+  <script src="../js/letters.js"></script>
+</body>
+</html>

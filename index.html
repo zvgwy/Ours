@@ -6,28 +6,25 @@
   <title>Ours</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/swipe.js"></script>
   <link rel="icon" href="img/icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="identityScreen" class="identity-screen">
     <div class="identity-card">
       <p>Who are you? 🤨</p>
 
-      <select id="personSelect">
-        <option value="">Choose your name</option>
-        <option value="Gwyneth">Gwyneth</option>
-        <option value="Mariah">Mariah</option>
-      </select>
-
-      <button id="enterBtn">Enter</button>
+      <div class="user-picker">
+        <button class="user-option" data-user="Mariah">Mariah</button>
+        <button class="user-option" data-user="Gwyneth">Gwyneth</button>
+      </div>
     </div>
   </div>
 
   <div id="siteContent" class="hidden">
     <header class="site-header">
-      <a href="index.html" class="logo">
-        <img src="img/icon.png" alt="Logo" />
-      </a>
+
 
       <nav>
         <a href="index.html" class="active">Home</a>
@@ -36,6 +33,10 @@
         <a href="pages/planes.html">Mariah's Planes</a>
         <a href="pages/levelup.html">Rank</a>
       </nav>
+
+      <a href="index.html" class="logo">
+        <img src="img/icon.png" alt="Logo" />
+      </a>
     </header>
 
     <main class="home-page fade-in">
@@ -72,7 +73,7 @@
         <p class="widget-label">Today's missing counter</p>
         <h2 id="missTitle">You were missed today</h2>
 
-        <div class="miss-count">
+        <div class="miss-count" id="missCountBox">
           <span id="missCount">0</span>
           <p>times today</p>
         </div>

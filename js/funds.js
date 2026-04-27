@@ -190,14 +190,17 @@ function renderWishlist() {
 
     li.innerHTML = `
       <div class="wishlist-info">
-        <strong class="${item.bought ? "completed" : ""}">
+        <strong 
+          class="${item.bought ? "completed" : ""}" 
+          data-id="${item.id}"
+        >
           ${item.name}
         </strong>
         <span>${formatPeso(item.price)}</span>
       </div>
 
       <div class="wishlist-actions">
-        <button class="primary-btn" onclick="toggleWishlist('${item.id}', ${item.bought})">
+        <button class="primary-btn" onclick="toggleWishlist('${item.id}', ${item.bought}, this)">
           ${item.bought ? "Undo" : "Bought"}
         </button>
 
@@ -235,8 +238,19 @@ wishlistForm.addEventListener("submit", async (e) => {
   loadFundsData();
 });
 
-async function toggleWishlist(id, currentBoughtStatus) {
+async function toggleWishlist(id, currentBoughtStatus, button) {
   const newBoughtStatus = !currentBoughtStatus;
+
+  const itemElement = button.closest("li");
+  const textEl = itemElement.querySelector("strong");
+
+  if (newBoughtStatus && textEl) {
+    textEl.classList.add("just-bought");
+
+    setTimeout(() => {
+      textEl.classList.remove("just-bought");
+    }, 300);
+  }
 
   await db
     .from("wishlist_items")

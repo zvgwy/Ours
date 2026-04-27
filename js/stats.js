@@ -71,12 +71,10 @@ function renderBucketList() {
 
     li.innerHTML = `
       <span>${item.text}</span>
-
       <div>
         <button class="small-btn" onclick="toggleBucketItem('${item.id}', ${item.done})">
           ${item.done ? "Undo" : "Done"}
         </button>
-
         <button class="small-btn delete-btn" onclick="deleteBucketItem('${item.id}')">
           Delete
         </button>
@@ -113,39 +111,87 @@ async function deleteBucketItem(id) {
   loadBucketItems();
 }
 
-async function updateMissStats() {
-  const now = new Date();
+function getPHDateParts(dateValue) {
+  const date = new Date(dateValue);
 
-  const startOfToday = new Date(now);
-  startOfToday.setHours(0, 0, 0, 0);
+  const parts = new Intl.DateTimeFormat("en-PH", {
+    timeZone: "Asia/Manila",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
 
-  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-  const startOfYear = new Date(now.getFullYear(), 0, 1);
+  return {
+    year: parts.find((p) => p.type === "year").value,
+    month: parts.find((p) => p.type === "month").value,
+    day: parts.find((p) => p.type === "day").value,
+  };
+}
 
-  const { data, error } = await db
-    .from("miss_taps")
-    .select("*")
-    .gte("created_at", startOfYear.toISOString());
+async function fetchAllMissTaps() {
+  let allData = [];
+  let from = 0;
+  const pageSize = 1000;
 
-  if (error) {
-    console.error(error);
-    return;
+  while (true) {
+    const { data, error } = await db
+      .from("miss_taps")
+      .select("*")
+      .range(from, from + pageSize - 1);
+
+    if (error) {
+      console.error(error);
+      break;
+    }
+
+    if (!data || data.length === 0) break;
+
+    allData = allData.concat(data);
+
+    if (data.length < pageSize) break;
+
+    from += pageSize;
   }
 
-  const taps = data || [];
+  return allData;
+}
 
-  const todayCount = taps.filter(
-    (tap) => new Date(tap.created_at) >= startOfToday
-  ).length;
+async function updateMissStats() {
+  const taps = await fetchAllMissTaps();
+  const todayPH = getPHDateParts(new Date());
 
-  const monthCount = taps.filter(
-    (tap) => new Date(tap.created_at) >= startOfMonth
-  ).length;
+  let todayCount = 0;
+  let monthCount = 0;
+  let yearCount = 0;
+  let gwynethTotal = 0;
+  let mariahTotal = 0;
 
-  const yearCount = taps.length;
+  taps.forEach((tap) => {
+    const tapDate = getPHDateParts(tap.created_at);
+    const sender = tap.sender?.trim().toLowerCase();
 
-  const gwynethTotal = taps.filter((tap) => tap.sender === "Gwyneth").length;
-  const mariahTotal = taps.filter((tap) => tap.sender === "Mariah").length;
+    if (
+      tapDate.year === todayPH.year &&
+      tapDate.month === todayPH.month &&
+      tapDate.day === todayPH.day
+    ) {
+      todayCount++;
+    }
+
+    if (
+      tapDate.year === todayPH.year &&
+      tapDate.month === todayPH.month
+    ) {
+      monthCount++;
+    }
+
+    if (tapDate.year === todayPH.year) {
+      yearCount++;
+    }
+
+    if (sender === "gwyneth") gwynethTotal++;
+    if (sender === "mariah") mariahTotal++;
+  });
 
   document.getElementById("missToday").textContent = todayCount;
   document.getElementById("missMonth").textContent = monthCount;

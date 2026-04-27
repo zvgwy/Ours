@@ -6,8 +6,6 @@ const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const identityScreen = document.getElementById("identityScreen");
 const siteContent = document.getElementById("siteContent");
 
-const personSelect = document.getElementById("personSelect");
-const enterBtn = document.getElementById("enterBtn");
 const switchUserBtn = document.getElementById("switchUserBtn");
 
 const welcomeTitle = document.getElementById("welcomeTitle");
@@ -16,9 +14,33 @@ const senderNote = document.getElementById("senderNote");
 
 const missBtn = document.getElementById("missBtn");
 const missCount = document.getElementById("missCount");
+const missCountBox = document.getElementById("missCountBox");
 
-const people = ["Gwyneth", "Mariah"];
+const userOptions = document.querySelectorAll(".user-option");
+
+const people = ["Mariah", "Gwyneth"];
+
 let currentUser = localStorage.getItem("currentUser");
+let selectedUser = currentUser || null;
+
+userOptions.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    userOptions.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    selectedUser = btn.dataset.user;
+    currentUser = selectedUser;
+
+    localStorage.setItem("currentUser", currentUser);
+
+    showSite();
+  });
+});
+
+function getOtherPerson(name) {
+  if (name === "Gwyneth") return "Mariah";
+  if (name === "Mariah") return "Gwyneth";
+}
 
 function getOtherPerson(name) {
   return people.find((person) => person !== name);
@@ -46,7 +68,7 @@ async function loadMissCount() {
 function showSentPopup(otherPerson) {
   const popup = document.getElementById("sentPopup");
 
-  popup.textContent = `Sent to ${otherPerson} 💌`;
+  popup.textContent = `Sent to ${otherPerson}`;
   popup.classList.remove("show");
   void popup.offsetWidth;
   popup.classList.add("show");
@@ -66,27 +88,16 @@ function showSite() {
 
   welcomeTitle.textContent = `Hi ${currentUser}, welcome home.`;
   missTitle.textContent = `${otherPerson} missed you`;
-  senderNote.textContent = `Tap the button to tell ${otherPerson} you miss them today.`;
+  senderNote.innerHTML = `Tap the button to tell ${otherPerson}<br>you miss them today.`;
 
   loadMissCount();
 }
 
-enterBtn.addEventListener("click", () => {
-  const selectedName = personSelect.value;
-
-  if (!selectedName) {
-    alert("Choose your name first 💗");
-    return;
-  }
-
-  currentUser = selectedName;
-  localStorage.setItem("currentUser", currentUser);
-
-  showSite();
-});
-
 missBtn.addEventListener("click", async () => {
   const otherPerson = getOtherPerson(currentUser);
+
+  missBtn.disabled = true;
+  missBtn.classList.add("sending");
 
   const { error } = await db.from("miss_taps").insert([
     {
@@ -95,6 +106,9 @@ missBtn.addEventListener("click", async () => {
     },
   ]);
 
+  missBtn.disabled = false;
+  missBtn.classList.remove("sending");
+
   if (error) {
     console.error(error);
     alert(error.message);
@@ -102,12 +116,20 @@ missBtn.addEventListener("click", async () => {
   }
 
   showSentPopup(otherPerson);
-  loadMissCount();
+  await loadMissCount();
+
+  missCountBox.classList.remove("bump");
+  void missCountBox.offsetWidth;
+  missCountBox.classList.add("bump");
 });
 
 switchUserBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
+
   currentUser = null;
+  selectedUser = null;
+
+  userOptions.forEach((btn) => btn.classList.remove("active"));
 
   siteContent.classList.add("hidden");
   identityScreen.style.display = "flex";
@@ -149,16 +171,21 @@ function updateRelationshipCounter() {
   document.getElementById("years").textContent = years;
   document.getElementById("months").textContent = months;
   document.getElementById("days").textContent = days;
+
   document.getElementById("hours").textContent =
     Math.floor(diff / (1000 * 60 * 60)) % 24;
+
   document.getElementById("minutes").textContent =
     Math.floor(diff / (1000 * 60)) % 60;
+
   document.getElementById("seconds").textContent =
     Math.floor(diff / 1000) % 60;
 }
 
 updateRelationshipCounter();
+
 setInterval(updateRelationshipCounter, 1000);
+
 setInterval(() => {
   if (currentUser) loadMissCount();
 }, 5000);

@@ -166,11 +166,10 @@ async function searchPlanes() {
             }
           </p>
         </div>
-        <button>Select</button>
       `;
 
-      div.querySelector("button").addEventListener("click", () => {
-        selectPlane(plane);
+      div.addEventListener("click", () => {
+        selectPlane(plane, div);
       });
 
       container.appendChild(div);
@@ -181,11 +180,19 @@ async function searchPlanes() {
   }
 }
 
-function selectPlane(plane) {
+function selectPlane(plane, element) {
   selectedPlaneData = plane;
 
+  document.querySelectorAll(".plane-result").forEach((el) => {
+    el.classList.remove("selected");
+  });
+
+  if (element) {
+    element.classList.add("selected");
+  }
+
   document.getElementById("selectedPlane").textContent =
-    `${plane.flight_iata || ""} • ${plane.aircraft_icao || "Unknown aircraft"}`;
+    `${plane.flight_iata || "Unknown Flight"} • ${plane.aircraft_icao || "Unknown aircraft"}`;
 }
 
 async function savePlane() {
@@ -374,11 +381,10 @@ function renderSearchResults() {
           }
         </p>
       </div>
-      <button>Select</button>
     `;
 
-    div.querySelector("button").addEventListener("click", () => {
-      selectPlane(plane);
+    div.addEventListener("click", () => {
+      selectPlane(plane, div);
     });
 
     container.appendChild(div);

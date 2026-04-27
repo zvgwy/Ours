@@ -9,7 +9,7 @@ function getCurrentIndex() {
   return pages.indexOf(file);
 }
 
-function goToPage(index, direction = "left") {
+function goToPage(index) {
   const inPagesFolder = window.location.pathname.includes("/pages/");
   let target = pages[index];
 
@@ -19,13 +19,7 @@ function goToPage(index, direction = "left") {
     target = `pages/${target}`;
   }
 
-  document.body.classList.add(
-    direction === "left" ? "page-exit-left" : "page-exit-right"
-  );
-
-  setTimeout(() => {
-    window.location.href = target;
-  }, 220);
+  window.location.href = target;
 }
 
 function shouldIgnoreSwipe(target) {
@@ -62,12 +56,12 @@ document.addEventListener("pointerup", (e) => {
 
   // swipe left = next page
   if (diffX < 0 && currentIndex < pages.length - 1) {
-    goToPage(currentIndex + 1, "left");
+    goToPage(currentIndex + 1);
   }
 
   // swipe right = previous page
   if (diffX > 0 && currentIndex > 0) {
-    goToPage(currentIndex - 1, "right");
+    goToPage(currentIndex - 1);
   }
 });
 

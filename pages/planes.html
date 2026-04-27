@@ -6,7 +6,6 @@
   <title>Mariah's Planes</title>
   <link rel="stylesheet" href="../style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="../js/swipe.js"></script>
   <link rel="icon" href="../img/icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -52,14 +51,14 @@
       <div class="planes-card">
         <h2>Search Plane</h2>
 
-        <div class="plane-search-row">
+        <div class="plane-search-pill">
           <input
             id="searchValue"
             type="text"
-            placeholder="Search Flight Number or Aircraft Model"
+            placeholder="Search flight or aircraft..."
+            onkeydown="if(event.key==='Enter') searchPlanes()"
           />
-
-          <button onclick="searchPlanes()">Search</button>
+          <button type="button" class="search-icon-btn" onclick="searchPlanes()">🔍</button>
         </div>
 
         <div id="searchResults" class="search-results"></div>
@@ -100,5 +99,6 @@
   </main>
 
   <script src="../js/planes.js"></script>
+  <script src="../js/swipe.js"></script>
 </body>
 </html>

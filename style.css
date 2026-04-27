@@ -1975,3 +1975,228 @@ textarea,
   }
 }
 
+@media (max-width: 700px) {
+  body {
+    padding-top: 92px;
+  }
+
+  .site-header {
+    top: 10px;
+    width: calc(100% - 24px);
+    max-width: none;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 10px 12px;
+    gap: 10px;
+
+    border-radius: 24px;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+  }
+
+  .logo img,
+  .site-brand img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 0;
+  }
+
+  .site-header nav {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 6px;
+
+    overflow-x: auto;
+    white-space: nowrap;
+
+    padding: 2px 0;
+    scrollbar-width: none;
+  }
+
+  .site-header nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-header nav a {
+    flex: 0 0 auto;
+    padding: 7px 10px;
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 700px) {
+  /* FUNDS: wishlist / things we want */
+  .funds-card.wide {
+    padding: 26px 18px;
+  }
+
+  .wishlist-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .wishlist-info {
+    width: 100%;
+  }
+
+  .wishlist-actions {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .wishlist-actions button {
+    flex: 1;
+    min-width: 110px;
+  }
+
+  .wishlist-form,
+  #wishlistForm {
+    flex-direction: column;
+  }
+
+  #wishlistForm input,
+  #wishlistForm button {
+    width: 100%;
+  }
+
+  /* PLANES: search plane */
+  .plane-search-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .plane-search-row input,
+  .plane-search-row button {
+    width: 100%;
+    height: 50px;
+    margin-top: 0 !important;
+  }
+
+  .search-results {
+    max-height: none;
+    padding-right: 0;
+  }
+
+  .plane-result {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .plane-result button {
+    width: 100%;
+  }
+}
+.plane-search-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: 100%;
+  height: 58px;
+  padding: 6px 8px 6px 18px;
+
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.75),
+    0 10px 22px rgba(255,120,160,0.14);
+}
+
+.plane-search-pill input {
+  flex: 1;
+  height: 100%;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.search-icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+  border-radius: 50%;
+
+  background: rgba(255, 95, 152, 0.72);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.55);
+
+  box-shadow:
+    0 8px 18px rgba(255,95,152,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.45);
+
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.search-icon-btn:hover {
+  background: rgba(255, 95, 152, 0.85);
+  transform: scale(0.96);
+}
+
+.plane-result {
+  position: relative;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.plane-result.selected {
+  border-color: rgba(255, 95, 152, 0.85);
+  background: rgba(255, 95, 152, 0.14);
+  box-shadow:
+    0 0 0 2px rgba(255, 95, 152, 0.16),
+    0 10px 22px rgba(255, 120, 160, 0.16);
+}
+
+.plane-result.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(255, 95, 152, 0.78);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
